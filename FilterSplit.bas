@@ -31,7 +31,7 @@ Set xlXML = CreateObject("MSXML2.DOMDocument")
         
         '   fill GeneralArray with FilterValue
         Do While Not .EOF
-            GenAr(GenArRow) = .Fields(#).Value  '###use the desired field for filter###
+            GenAr(GenArRow) = .Fields(Settings.RetrieveVar("Field")).Value
             GenArRow = GenArRow + 1
             .MoveNext
         Loop
@@ -46,16 +46,16 @@ Set xlXML = CreateObject("MSXML2.DOMDocument")
         '   for every unique item ...
         For UnArRow = 0 To UnArRows
             VO = UnAr(UnArRow)
-            WBName = VO & ".xls"
+            WBName = VO & ".xlsx"
             '   ... create a workbook with MakeWB()
             MakeWB WBName
             
             With Workbooks(WBName)
-                With .Worksheets("Tabelle1")
+                With .Worksheets(Settings.RetrieveVar("Table"))
                     '   filter GeneralRecordset on the unique item
-                    GenRst.Filter = "[] = '" & VO & "'"
+                    GenRst.Filter = RetrieveVar("Filter") & VO & "'"
                     '   copy the filtered GeneralRecordset into new workbook
-                    .Range("A3").CopyFromRecordset GenRst
+                    .Range(RetrieveVar("TrgtRange")).CopyFromRecordset GenRst
                     GenRst.Filter = 0
                 End With
                 .Save
