@@ -17,7 +17,7 @@ Dim WBName As String      'Workbook-Name
 Set GenRst = CreateObject("ADODB.Recordset")
 Set xlXML = CreateObject("MSXML2.DOMDocument")
     
-    '   define recordset from functions.RangeContent()
+    '   define recordset from Functions.RangeContent()
     xlXML.LoadXML RangeContent.Value(xlRangeValueMSPersistXML)
     
     With GenRst
@@ -53,7 +53,7 @@ Set xlXML = CreateObject("MSXML2.DOMDocument")
             With Workbooks(WBName)
                 With .Worksheets("Tabelle1")
                     '   filter GeneralRecordset on the unique item
-                    GenRst.Filter = "[ VO-Kenn.] = '" & VO & "'"
+                    GenRst.Filter = "[] = '" & VO & "'"
                     '   copy the filtered GeneralRecordset into new workbook
                     .Range("A3").CopyFromRecordset GenRst
                     GenRst.Filter = 0
