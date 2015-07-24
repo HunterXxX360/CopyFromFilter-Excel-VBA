@@ -16,7 +16,7 @@ Just import `FilterSplit.bas`, `Functions.bas` and `Settings.bas` into your desi
 * `TrgtRange`:  the range of your new workbook into which the information should be copied (range as string).
 
 #### Flaws, Prospects and Roadmap
-This macro is an early version of a general macro based upon a highly personalized macro I wrote at work.
+This macro is an early version of a general macro based upon a highly specialized macro I wrote at work.
 * It does not retrieve the names of the columns, which is the biggest flaw to fix in future releases.
 * Furthermore it does not format the new worksheet and just copies bare information (which is sufficient for most, but not all uses).
 
