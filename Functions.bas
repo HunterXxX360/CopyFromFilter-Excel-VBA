@@ -51,3 +51,27 @@ End Function
 Private Function IsInArray(FMItem As Variant, Ar As Variant) As Boolean
     IsInArray = (UBound(Filter(Ar, FMItem)) > -1)
 End Function
+
+Function CompArray(Ar As Variant, CompAr As Variant) As Variant
+Dim UnAr() As Variant
+Dim UnC As Double
+Dim FMatch As Boolean
+Dim FMElement As Variant
+
+UnC = -1
+
+For Each FMElement In Ar
+
+    FMatch = bIsInArray(FMElement, CompAr)
+    
+    If FMatch = False Then
+        UnC = UnC + 1
+        ReDim Preserve UnAr(UnC)
+        UnAr(UnC) = FMElement
+    End If
+Next FMElement
+
+If UnC > -1 Then
+    vCompArray = UnAr
+End If
+End Function
